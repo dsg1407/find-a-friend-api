@@ -8,13 +8,13 @@ datasource db {
 }
 
 model Pet {
-  id        String   @id @default(uuid())
-  name      String
-  species   String
-  breed     String?
-  age       Int?
-  size      String?
-  createdAt DateTime @default(now())
+  id         String   @id @default(uuid())
+  name       String
+  species    String
+  breed      String?
+  age        Int?
+  size       String?
+  created_at DateTime @default(now())
 
   organization    Organization @relation(fields: [organization_id], references: [id])
   organization_id String
@@ -30,7 +30,7 @@ model Organization {
   address       String
   city          String
   phone         String
-  createdAt     DateTime @default(now())
+  created_at    DateTime @default(now())
 
   pets Pet[]
 
