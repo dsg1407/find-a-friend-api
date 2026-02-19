@@ -7,8 +7,8 @@ A API deve seguir um conjunto de funcionalidades e regras de negócio.
 [] A listagem de todos os pets disponíveis para adoção em uma determinada cidade
 [] A filtragem de pets com base em suas características (como idade, porte, etc.)
 [] A visualização dos detalhes de um pet específico
-[] O cadastro de uma ORG (organização)
-[] O login de uma ORG no sistema
+[x] O cadastro de uma ORG (organização)
+[x] O login de uma ORG no sistema
 
 ## Regras de Negócio
 As seguintes condições devem ser implementadas:
