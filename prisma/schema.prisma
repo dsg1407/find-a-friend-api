@@ -11,9 +11,10 @@ model Pet {
   id         String   @id @default(uuid())
   name       String
   species    String
-  breed      String?
-  age        Int?
-  size       String?
+  breed      String
+  age        Int
+  size       String
+  city       String
   created_at DateTime @default(now())
 
   organization    Organization @relation(fields: [organization_id], references: [id])
