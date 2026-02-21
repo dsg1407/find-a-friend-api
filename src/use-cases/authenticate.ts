@@ -21,8 +21,6 @@ export class AuthenticateUseCase {
   }: AuthenticateUseCaseRequest): Promise<AuthenticateUseCaseResponse> {
     const organization = await this.organizationsRepository.findByEmail(email)
 
-    console.log(organization)
-
     if (!organization) {
       throw new InvalidCredentialsError()
     }
