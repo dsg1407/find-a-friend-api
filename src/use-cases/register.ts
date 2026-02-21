@@ -2,6 +2,7 @@ import { OrganizationsRepository } from '@/repositories/organizations-repository
 import { Organization } from 'prisma/generated/prisma/client'
 import { OrganizationAlreadyExistsError } from './errors/organization-already-exists-error'
 import { hash } from 'bcryptjs'
+import { MissingDataError } from './errors/missing-data-error'
 
 interface RegisterUseCaseRequest {
   name: string
@@ -32,6 +33,10 @@ export class RegisterUseCase {
 
     if (organizationWithSameEmail) {
       throw new OrganizationAlreadyExistsError()
+    }
+
+    if (!address || !city || !phone) {
+      throw new MissingDataError()
     }
 
     const passwordHash = await hash(password, 6)

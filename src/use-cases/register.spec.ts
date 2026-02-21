@@ -3,6 +3,7 @@ import { InMemoryOrganizationsRepository } from '@/repositories/in-memory/in-mem
 import { RegisterUseCase } from './register'
 import { OrganizationAlreadyExistsError } from './errors/organization-already-exists-error'
 import { compare } from 'bcryptjs'
+import { MissingDataError } from './errors/missing-data-error'
 
 let organizationsRepository: InMemoryOrganizationsRepository
 let sut: RegisterUseCase
@@ -64,5 +65,40 @@ describe('Register Use Case', () => {
     )
 
     expect(isPasswordCorrectlyHashed).toBe(true)
+  })
+
+  it('should not be able to register with missing required fields', async () => {
+    await expect(() =>
+      sut.execute({
+        name: 'Pet Lovers',
+        email: 'pet.lovers@example.com',
+        password: 'password123',
+        address: '123 Main St',
+        city: '',
+        phone: '555-1234',
+      }),
+    ).rejects.toBeInstanceOf(MissingDataError)
+
+    await expect(() =>
+      sut.execute({
+        name: 'Pet Lovers',
+        email: 'pet.lovers@example.com',
+        password: 'password123',
+        address: '123 Main St',
+        city: 'city Name',
+        phone: '',
+      }),
+    ).rejects.toBeInstanceOf(MissingDataError)
+
+    await expect(() =>
+      sut.execute({
+        name: 'Pet Lovers',
+        email: 'pet.lovers@example.com',
+        password: 'password123',
+        address: '',
+        city: 'city Name',
+        phone: '555-1234',
+      }),
+    ).rejects.toBeInstanceOf(MissingDataError)
   })
 })
