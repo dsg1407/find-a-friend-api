@@ -1,31 +1,36 @@
 import { Pet } from 'prisma/generated/prisma/client'
-import { PetsRepository } from '@/repositories/pets-repository'
+import {
+  PetsCharacteristics,
+  PetsRepository,
+} from '@/repositories/pets-repository'
 import { MissingDataError } from './errors/missing-data-error'
 
-interface GetPetsByCityUseCaseRequest {
+interface GetPetsByQueryUseCaseRequest {
   city: string
   page: number
   perPage?: number
+  characteristics?: PetsCharacteristics
 }
 
-interface GetPetsByCityUseCaseResponse {
+interface GetPetsByQueryUseCaseResponse {
   pets: Pet[]
 }
 
-export class GetPetsByCityUseCase {
+export class GetPetsByQueryUseCase {
   constructor(private petsRepository: PetsRepository) {}
 
   async execute(
-    data: GetPetsByCityUseCaseRequest,
-  ): Promise<GetPetsByCityUseCaseResponse> {
+    data: GetPetsByQueryUseCaseRequest,
+  ): Promise<GetPetsByQueryUseCaseResponse> {
     if (!data.city) {
       throw new MissingDataError()
     }
 
-    const pets = await this.petsRepository.findManyByCity(
+    const pets = await this.petsRepository.findMany(
       data.city,
       data.page ?? 1,
       data.perPage ?? 10,
+      data.characteristics,
     )
 
     return {

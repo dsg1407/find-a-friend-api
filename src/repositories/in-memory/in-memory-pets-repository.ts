@@ -57,12 +57,16 @@ export class InMemoryPetsRepository implements PetsRepository {
       .slice((page - 1) * perPage, page * perPage)
   }
 
-  async findManyByCharacteristics(
-    characteristics: PetsCharacteristics,
+  async findMany(
+    city: string,
     page: number,
     perPage = 10,
+    characteristics: PetsCharacteristics = {},
   ) {
     return this.items
+      .filter(
+        (item) => item.city.toLocaleLowerCase() === city.toLocaleLowerCase(),
+      )
       .filter((item) =>
         Object.entries(characteristics).every(([key, value]) => {
           if (value === undefined) return true

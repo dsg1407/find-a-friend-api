@@ -10,11 +10,10 @@ export interface PetsCharacteristics {
 export interface PetsRepository {
   create(data: Prisma.PetUncheckedCreateInput): Promise<Pet>
   findById(id: string): Promise<Pet | null>
-  findManyByCity(city: string, page: number, perPage?: number): Promise<Pet[]>
-  searchMany(query: string, page: number, perPage?: number): Promise<Pet[]>
-  findManyByCharacteristics(
-    characteristics: PetsCharacteristics,
+  findMany(
+    city: string,
     page: number,
     perPage?: number,
+    characteristics?: PetsCharacteristics,
   ): Promise<Pet[]>
 }
