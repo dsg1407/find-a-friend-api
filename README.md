@@ -6,7 +6,7 @@ A API deve seguir um conjunto de funcionalidades e regras de negócio.
 [x] O cadastro de um pet
 [x] A listagem de todos os pets disponíveis para adoção em uma determinada cidade
 [x] A filtragem de pets com base em suas características (como idade, porte, etc.)
-[] A visualização dos detalhes de um pet específico
+[x] A visualização dos detalhes de um pet específico
 [x] O cadastro de uma ORG (organização)
 [x] O login de uma ORG no sistema
 
