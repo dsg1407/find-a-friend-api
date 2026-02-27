@@ -11,7 +11,7 @@ interface AddNewPetUseCaseRequest {
   age: number
   size: string
   city: string
-  organization_id: string
+  organizationId: string
 }
 
 interface AddNewPetUseCaseResponse {
@@ -32,7 +32,7 @@ export class AddNewPetUseCase {
     }
 
     const organization = await this.organizationsRepository.findById(
-      data.organization_id,
+      data.organizationId,
     )
 
     if (!organization) {
@@ -46,7 +46,7 @@ export class AddNewPetUseCase {
       age: data.age,
       size: data.size,
       city: data.city,
-      organization_id: data.organization_id,
+      organization_id: data.organizationId,
     })
 
     return {

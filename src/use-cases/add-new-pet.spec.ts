@@ -34,7 +34,7 @@ describe('Add New Pet Use Case', () => {
       age: 3,
       size: 'Large',
       city: 'Anytown',
-      organization_id: 'org-123',
+      organizationId: 'org-123',
     })
 
     expect(pet.id).toEqual(expect.any(String))
@@ -49,7 +49,7 @@ describe('Add New Pet Use Case', () => {
         age: 3,
         size: 'Large',
         city: 'Anytown',
-        organization_id: 'org-123',
+        organizationId: 'org-123',
       }),
     ).rejects.toBeInstanceOf(ResourceNotFoundError)
   })
@@ -73,7 +73,7 @@ describe('Add New Pet Use Case', () => {
         age: 3,
         size: 'Large',
         city: '',
-        organization_id: 'org-123',
+        organizationId: 'org-123',
       }),
     ).rejects.toBeInstanceOf(MissingDataError)
   }) // Implementar no registro de orgs tb
