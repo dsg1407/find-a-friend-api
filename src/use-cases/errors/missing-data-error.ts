@@ -1,4 +1,6 @@
-export class MissingDataError extends Error {
+import { CustomErrors } from './custom-errors'
+
+export class MissingDataError extends CustomErrors {
   constructor() {
     super('Missing required data.')
   }
