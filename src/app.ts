@@ -5,6 +5,7 @@ import { ZodError, z } from 'zod'
 import { organizationsRoutes } from './http/controllers/organizations/routes'
 import fastifyCookie from '@fastify/cookie'
 import { petsRoutes } from './http/controllers/pets/routes'
+import { CustomErrors } from './use-cases/errors/custom-errors'
 
 export const app = fastify()
 
@@ -25,6 +26,12 @@ app.setErrorHandler((error, _, reply) => {
     return reply.status(400).send({
       message: 'Validation error.',
       issues: z.treeifyError(error),
+    })
+  }
+
+  if (error instanceof CustomErrors) {
+    return reply.status(400).send({
+      message: error.message,
     })
   }
 

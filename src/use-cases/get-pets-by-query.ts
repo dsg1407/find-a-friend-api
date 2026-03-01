@@ -25,7 +25,6 @@ export class GetPetsByQueryUseCase {
     if (!data.city) {
       throw new MissingDataError()
     }
-
     const pets = await this.petsRepository.findMany(
       data.city,
       data.page ?? 1,
